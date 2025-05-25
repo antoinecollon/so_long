@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:20:05 by acollon           #+#    #+#             */
-/*   Updated: 2025/05/12 12:14:26 by acollon          ###   ########.fr       */
+/*   Updated: 2025/05/24 13:36:37 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int	validate_elements(t_game *game)
 		i++;
 	}
 	if (game->nb_exit != 1)
-		free_and_exit("too much or not enough exit\n", game);
+		free_and_exit("Too much or not enough exit\n", game);
 	if (game->nb_player != 1)
-		free_and_exit("too much or not enough player\n", game);
+		free_and_exit("Too much or not enough player\n", game);
 	if (game->total_collectible < 1)
 		free_and_exit("Map must contain collectible\n", game);
 	return (0);

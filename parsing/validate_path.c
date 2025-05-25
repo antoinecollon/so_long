@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 11:50:48 by acollon           #+#    #+#             */
-/*   Updated: 2025/05/13 09:24:46 by acollon          ###   ########.fr       */
+/*   Updated: 2025/05/24 13:41:57 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	find_player_pos(t_game *game, t_flood *flood)
 				flood->player_y = y;
 				game->player_x = x;
 				game->player_y = y;
+				game->map[y][x] = '0';
 				return ;
 			}
 			x++;

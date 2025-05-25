@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:20:17 by acollon           #+#    #+#             */
-/*   Updated: 2025/05/14 15:18:24 by acollon          ###   ########.fr       */
+/*   Updated: 2025/05/23 16:29:14 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,45 +73,45 @@ int	read_map(int fd, t_game *game)
 	return (0);
 }
 
-int	main(int ac, char **av)
-{
-	int		i;
-	int		fd;
-	t_game	game;
-	t_flood	flood;
+// int	main(int ac, char **av)
+// {
+// 	int		i;
+// 	int		fd;
+// 	t_game	game;
+// 	t_flood	flood;
 
-	i = 0;
-	if (ac != 2)
-	{
-		write (2, "Need a file to work\n", ft_strlen("Need a file to work\n"));
-		return (0);
-	}
-	else
-	{
-		game.filename = av[1];
-		fd = open(av[1], O_RDONLY);
-		if (fd < 0)
-			return (1);
-		if (!count_line(fd, &game))
-		{
-			close(fd);
-			fd = open(av[1], O_RDONLY);
-			if (fd < 0)
-				return (1);
-			read_map(fd, &game);
-		}
-		close(fd);
-	}
-	if (!validate_map(&game, &flood))
-	{
-		while (game.map[i])
-		{
-			printf("%s|\n", game.map[i]);
-			i++;
-		}
-		printf ("%d\n", game.map_height);
-		printf ("%d\n", game.map_width);
-	}
-	free_map(game.map);
-	return (0);
-}
+// 	i = 0;
+// 	if (ac != 2)
+// 	{
+// 		write (2, "Need a file to work\n", ft_strlen("Need a file to work\n"));
+// 		return (0);
+// 	}
+// 	else
+// 	{
+// 		game.filename = av[1];
+// 		fd = open(av[1], O_RDONLY);
+// 		if (fd < 0)
+// 			return (1);
+// 		if (!count_line(fd, &game))
+// 		{
+// 			close(fd);
+// 			fd = open(av[1], O_RDONLY);
+// 			if (fd < 0)
+// 				return (1);
+// 			read_map(fd, &game);
+// 		}
+// 		close(fd);
+// 	}
+// 	if (!validate_map(&game, &flood))
+// 	{
+// 		while (game.map[i])
+// 		{
+// 			printf("%s|\n", game.map[i]);
+// 			i++;
+// 		}
+// 		printf ("%d\n", game.map_height);
+// 		printf ("%d\n", game.map_width);
+// 	}
+// 	free_map(game.map);
+// 	return (0);
+// }

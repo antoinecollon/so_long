@@ -6,7 +6,7 @@
 #    By: acollon <acollon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/10 11:07:35 by acollon           #+#    #+#              #
-#    Updated: 2025/05/14 15:14:38 by acollon          ###   ########.fr        #
+#    Updated: 2025/05/24 13:50:39 by acollon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC_DIR	= src
 OBJ_DIR	= obj
 INC_DIR	= includes
 LIBFT_DIR = libft
+PRINTF_DIR = ft_printf
 MLX_DIR = mlx
 MLX = $(MLX_DIR)/libmlx_linux.a
 MLX_FLAGS = -lXext -lX11 -lm
@@ -26,6 +27,8 @@ SRCS	= \
 		parsing/error_handler.c \
 		parsing/parse_map.c \
 		parsing/validate_path.c \
+		display/render_map.c \
+		display/handle_input.c \
 			
 # à compléter au fur et à mesure des tests
 
@@ -33,25 +36,31 @@ OBJS	= $(SRCS:.c=.o)
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 LIBFT	= $(LIBFT_DIR)/libft.a
+FT_PRINTF = $(PRINTF_DIR)/ft_printf.a
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $(NAME)
+$(NAME): $(FT_PRINTF) $(LIBFT) $(MLX) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF) $(MLX) $(MLX_FLAGS) -o $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
+$(FT_PRINTF):
+	$(MAKE) -C $(PRINTF_DIR)
+	
 $(MLX):
 	$(MAKE) -C $(MLX_DIR) all
 	
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(MLX_DIR) clean
+	$(MAKE) -C $(PRINTF_DIR) clean
 	rm -f $(OBJS)
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(PRINTF_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all

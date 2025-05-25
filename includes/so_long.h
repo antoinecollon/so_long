@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:23:34 by acollon           #+#    #+#             */
-/*   Updated: 2025/05/14 16:09:12 by acollon          ###   ########.fr       */
+/*   Updated: 2025/05/24 14:18:15 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "../libft/libft.h"
 # include "../gnl/get_next_line.h"
 # include "../mlx/mlx.h"
+# include "X11/keysym.h"
+# include "../ft_printf/ft_printf.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -26,13 +28,13 @@
 typedef struct s_game
 {
 	void	*mlx;
-	void	*win;
+	void	*window;
 	char	**map;
 	char	*filename;
 	int		map_width;
 	int		map_height;
 	void	*img_wall;
-	void	*floor;
+	void	*img_floor;
 	void	*img_player;
 	void	*img_exit;
 	void	*img_coin;
@@ -80,5 +82,21 @@ int		validate_path(t_flood *flood, t_game *game);
 /* error_handler.c */
 void	free_and_exit(char *msg, t_game *game);
 int		file_type(t_game *game);
+void	free_all(t_game *game);
+void	exit_clean(char *msg, t_game *game);
+
+// DISPLAY
+/* render_map.c */
+void	load_images(t_game *g);
+void	render_map(t_game *g);
+void	init_game(t_game *g);
+void	put_tile(t_game *g, char tile, int x, int y);
+
+/* handle_input.c */
+int		handle_close(t_game *game);
+int		handle_key(int keycode, t_game *game);
+void	move_player(t_game *game, int x, int y);
+int		handle_tile_effect(t_game *game, int x, int y);
+int		can_move(t_game *game, int x, int y);
 
 #endif
