@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:23:34 by acollon           #+#    #+#             */
-/*   Updated: 2025/06/19 18:58:50 by acollon          ###   ########.fr       */
+/*   Updated: 2025/06/23 10:56:55 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_game
 	int		nb_player;
 	int		nb_exit;
 	int		collected;
+	t_enemy	enemy;
 }	t_game;
 
 typedef struct s_flood
@@ -59,6 +60,13 @@ typedef struct s_flood
 	int		player_y;
 	char	**map_copy;
 }	t_flood;
+
+typedef struct s_enemy
+{
+	void	*img_enemy1;
+	void	*img_enemy2;
+	int		frame;
+}	t_enemy;
 
 //PARSING
 /* read_map.c */
