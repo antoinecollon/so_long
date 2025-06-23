@@ -47,7 +47,7 @@ int	validate_characters(t_game *game)
 		while (str[j])
 		{
 			if (str[j] != 'C' && str[j] != 'P' && str[j] != 'E'
-				&& str[j] != '1' && str[j] != '0')
+				&& str[j] != '1' && str[j] != '0' && str[j] != 'T')
 			{
 				free_and_exit("Wrong character in map", game);
 				return (1);

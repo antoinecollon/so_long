@@ -22,16 +22,13 @@ void	free_all(t_game *game)
 		mlx_destroy_image(game->mlx, game->img_coin);
 	if (game->img_exit)
 		mlx_destroy_image(game->mlx, game->img_exit);
-	if (game->img_play1)
-		mlx_destroy_image(game->mlx, game->img_play1);
-	if (game->img_play2)
-		mlx_destroy_image(game->mlx, game->img_play2);
 	if (game->img_floor)
 		mlx_destroy_image(game->mlx, game->img_floor);
 	if (game->img_wall)
 		mlx_destroy_image(game->mlx, game->img_wall);
-	if (game->window)
+	if (game->mlx && game->window)
 		mlx_destroy_window(game->mlx, game->window);
+	free_entities(game);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
@@ -68,4 +65,20 @@ int	file_type(t_game *game)
 	if (ft_strcmp(game->filename + (len - 4), ".ber") != 0)
 		free_and_exit("Wrong type of file, need .ber\n", game);
 	return (0);
+}
+
+void	free_entities(t_game *game)
+{
+	if (game->img_play1)
+		mlx_destroy_image(game->mlx, game->img_play1);
+	if (game->img_play2)
+		mlx_destroy_image(game->mlx, game->img_play2);
+	if (game->img_play3)
+		mlx_destroy_image(game->mlx, game->img_play3);
+	if (game->img_play4)
+		mlx_destroy_image(game->mlx, game->img_play4);
+	if (game->enemy.img_enemy1)
+		mlx_destroy_image(game->mlx, game->enemy.img_enemy1);
+	if (game->enemy.img_enemy2)
+		mlx_destroy_image(game->mlx, game->enemy.img_enemy2);
 }

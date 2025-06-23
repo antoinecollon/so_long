@@ -14,8 +14,8 @@
 
 void	init_enemy_texture(t_game *game)
 {
-	int	w;
-	int	h;
+	int		w;
+	int		h;
 
 	game->enemy.img_enemy1 = mlx_xpm_file_to_image(game->mlx,
 			"assets/enemy1.xpm", &w, &h);
@@ -23,10 +23,10 @@ void	init_enemy_texture(t_game *game)
 			"assets/enemy2.xpm", &w, &h);
 	game->enemy.frame = 0;
 	if (!game->enemy.img_enemy1 || !game->enemy.img_enemy2)
-		free_and_exit("Erreur chargement des sprites", &game);
+		free_and_exit("Error charging sprites\n", game);
 }
 
-void	display_enemy(t_game *game, int x, int y)
+void	display_enemy(t_game *game,int x, int y)
 {
 	void	*img;
 

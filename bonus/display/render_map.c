@@ -50,6 +50,9 @@ void	load_images(t_game *g)
 	g->img_wall = mlx_xpm_file_to_image(g->mlx, "assets/wall.xpm", &w, &h);
 	g->img_play1 = mlx_xpm_file_to_image(g->mlx, "assets/knight1.xpm", &w, &h);
 	g->img_play2 = mlx_xpm_file_to_image(g->mlx, "assets/knight2.xpm", &w, &h);
+	g->img_play3 = mlx_xpm_file_to_image(g->mlx, "assets/knight3.xpm", &w, &h);
+	g->img_play4 = mlx_xpm_file_to_image(g->mlx, "assets/knight4.xpm", &w, &h);
+	init_enemy_texture(g);
 	g->anim_state = 0;
 	if (!g->img_coin || !g->img_exit || !g->img_play1
 		|| !g->img_wall || !g->img_floor || !g->img_play2)
@@ -72,14 +75,7 @@ void	render_map(t_game *g)
 		}
 		y++;
 	}
-	if (g->anim_state == 0)
-	{
-		mlx_put_image_to_window(g->mlx, g->window, g->img_play1,
-			g->player_x * 32, g->player_y * 32);
-	}
-	else
-		mlx_put_image_to_window(g->mlx, g->window, g->img_play2,
-			g->player_x * 32, g->player_y * 32);
+	get_anim(g);
 	display_move(g);
 }
 
@@ -93,15 +89,18 @@ void	put_tile(t_game *g, char tile, int x, int y)
 		mlx_put_image_to_window(g->mlx, g->window, g->img_coin, x, y);
 	if (tile == 'E')
 		mlx_put_image_to_window(g->mlx, g->window, g->img_exit, x, y);
+	if (tile == 'T')
+		mlx_put_image_to_window(g->mlx, g->window, g->enemy.img_enemy1, x, y);
 }
 
 int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	ft_bzero(&game, sizeof(t_game));
 	if (argc != 2)
 	{
-		ft_putstr_fd("Usage: ./so_long map.ber\n", 2);
+		ft_putstr_fd("File .ber needed\n", 2);
 		return (1);
 	}
 	game.filename = argv[1];

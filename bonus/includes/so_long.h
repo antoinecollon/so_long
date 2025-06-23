@@ -25,6 +25,19 @@
 
 # define TILE_SIZE 32
 
+typedef struct s_enemy
+{
+	void	*img_enemy1;
+	void	*img_enemy2;
+	int		frame;
+}	t_enemy;
+
+typedef struct	s_point
+{
+	int x;
+	int y;
+}	t_point;
+
 typedef struct s_game
 {
 	void	*mlx;
@@ -37,6 +50,8 @@ typedef struct s_game
 	void	*img_floor;
 	void	*img_play1;
 	void	*img_play2;
+	void	*img_play3;
+	void	*img_play4;
 	int		anim_state;
 	void	*img_exit;
 	void	*img_coin;
@@ -59,14 +74,9 @@ typedef struct s_flood
 	int		player_x;
 	int		player_y;
 	char	**map_copy;
+	int		map_height;
+	int		map_width;
 }	t_flood;
-
-typedef struct s_enemy
-{
-	void	*img_enemy1;
-	void	*img_enemy2;
-	int		frame;
-}	t_enemy;
 
 //PARSING
 /* read_map.c */
@@ -94,6 +104,7 @@ void	free_and_exit(char *msg, t_game *game);
 int		file_type(t_game *game);
 void	free_all(t_game *game);
 void	exit_clean(char *msg, t_game *game);
+void	free_entities(t_game *game);
 
 // DISPLAY
 /* render_map.c */
@@ -112,5 +123,12 @@ int		can_move(t_game *game, int x, int y);
 // BONUS
 /* display_move.c */
 void	display_move(t_game *game);
+
+/* animation.c*/
+void	get_anim(t_game *game);
+
+/* enemy.c */
+void	init_enemy_texture(t_game *game);
+void	display_enemy(t_game *game, int x, int y);
 
 #endif

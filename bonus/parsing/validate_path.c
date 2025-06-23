@@ -49,6 +49,8 @@ int	copy_map(t_game *game, t_flood *flood)
 		i++;
 	}
 	flood->map_copy[i] = NULL;
+	flood->map_height = game->map_height;
+	flood->map_width = game->map_width;
 	return (0);
 }
 
@@ -80,11 +82,16 @@ void	find_player_pos(t_game *game, t_flood *flood)
 
 void	flood_fill(t_flood *flood, int x, int y)
 {
-	if (flood->map_copy[y][x] == 'X' || flood->map_copy[y][x] == '1')
+	char	tile;
+
+	if (x < 0 || y < 0 || flood->map_height <= y || flood->map_width <= x)
 		return ;
-	if (flood->map_copy[y][x] == 'C')
+	tile = flood->map_copy[y][x];
+	if (tile == 'X' || tile == '1' || tile == 'T')
+		return ;
+	if (tile == 'C')
 		flood->collected++;
-	if (flood->map_copy[y][x] == 'E')
+	if (tile == 'E')
 		flood->exit_reached = 1;
 	flood->map_copy[y][x] = 'X';
 	flood_fill(flood, x - 1, y);
