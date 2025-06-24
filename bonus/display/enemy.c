@@ -26,7 +26,7 @@ void	init_enemy_texture(t_game *game)
 		free_and_exit("Error charging sprites\n", game);
 }
 
-void	display_enemy(t_game *game,int x, int y)
+void	anim_enemies(t_game *game,int x, int y) // pas utilisee
 {
 	void	*img;
 
@@ -41,4 +41,16 @@ void	display_enemy(t_game *game,int x, int y)
 		game->enemy.frame = 0;
 	}
 	mlx_put_image_to_window(game->mlx, game->window, img, x * 32, y * 32);
+}
+
+void	update_enemies(t_game *game, int x, int y)
+{
+
+}
+void	choose_direction(t_game *game)
+{
+	int	y;
+	int	x;
+
+	
 }

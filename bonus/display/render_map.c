@@ -106,7 +106,6 @@ int	main(int argc, char **argv)
 	game.filename = argv[1];
 	game.move_count = 0;
 	init_game(&game);
-	render_map(&game);
 	mlx_key_hook(game.window, handle_key, &game);
 	mlx_hook(game.window, 17, 0, handle_close, &game);
 	mlx_loop(game.mlx);
