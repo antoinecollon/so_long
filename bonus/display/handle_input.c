@@ -42,7 +42,7 @@ int	handle_key(int keycode, t_game *game)
 		game->anim_state = 3;
 		move_player(game, 1, 0);
 	}
-	updates_enemies(game);
+	// updates_enemies(game); ?
 	return (0);
 }
 
@@ -57,7 +57,7 @@ void	move_player(t_game *game, int x, int y)
 		return ;
 	if (!handle_tile_effect(game, new_x, new_y))
 		return ;
-	update_enemies(game);
+	// update_enemies(game); ?
 	game->player_x = new_x;
 	game->player_y = new_y;
 	game->move_count++;

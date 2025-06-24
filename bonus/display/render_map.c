@@ -90,7 +90,7 @@ void	put_tile(t_game *g, char tile, int x, int y)
 	if (tile == 'E')
 		mlx_put_image_to_window(g->mlx, g->window, g->img_exit, x, y);
 	if (tile == 'T')
-		mlx_put_image_to_window(g->mlx, g->window, g->enemy.img_enemy1, x, y);
+		mlx_put_image_to_window(g->mlx, g->window, g->img_enemy1, x, y); // a modifier
 }
 
 int	main(int argc, char **argv)

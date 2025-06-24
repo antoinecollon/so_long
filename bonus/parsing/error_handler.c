@@ -77,8 +77,8 @@ void	free_entities(t_game *game)
 		mlx_destroy_image(game->mlx, game->img_play3);
 	if (game->img_play4)
 		mlx_destroy_image(game->mlx, game->img_play4);
-	if (game->enemy.img_enemy1)
-		mlx_destroy_image(game->mlx, game->enemy.img_enemy1);
-	if (game->enemy.img_enemy2)
-		mlx_destroy_image(game->mlx, game->enemy.img_enemy2);
+	if (game->img_enemy1)
+		mlx_destroy_image(game->mlx, game->img_enemy1);
+	if (game->img_enemy2)
+		mlx_destroy_image(game->mlx, game->img_enemy2);
 }

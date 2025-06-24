@@ -31,7 +31,7 @@ SRCS	= \
 		display/handle_input.c \
 		bonus/display_move.c \
 		animation/animation.c \
-		display/enemy.c
+		bonus/enemy.c
 			
 # à compléter au fur et à mesure des tests
 

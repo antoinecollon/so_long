@@ -25,18 +25,14 @@
 
 # define TILE_SIZE 32
 
-typedef struct s_enemy
+typedef struct s_enemies
 {
-	void	*img_enemy1;
-	void	*img_enemy2;
-	int		frame;
-}	t_enemy;
-
-typedef struct	s_point
-{
-	int x;
-	int y;
-}	t_point;
+	int					enemy_x;
+	int					enemy_y;
+	int					enemy_dir;
+	int					frame;
+	struct s_enemies	*next;
+}	t_enemies;
 
 typedef struct s_game
 {
@@ -52,6 +48,8 @@ typedef struct s_game
 	void	*img_play2;
 	void	*img_play3;
 	void	*img_play4;
+	void	*img_enemy1;
+	void	*img_enemy2;
 	int		anim_state;
 	void	*img_exit;
 	void	*img_coin;
@@ -64,7 +62,7 @@ typedef struct s_game
 	int		nb_player;
 	int		nb_exit;
 	int		collected;
-	t_enemy	enemy;
+	t_enemies	*enemies;
 }	t_game;
 
 typedef struct s_flood
