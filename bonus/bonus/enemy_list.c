@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 16:55:42 by acollon           #+#    #+#             */
-/*   Updated: 2025/06/23 18:01:14 by acollon          ###   ########.fr       */
+/*   Updated: 2025/06/24 16:50:09 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_enemies	*ft_enemy_new(int x, int y)
 		return (NULL);
 	enemy->enemy_x = x;
 	enemy->enemy_y = y;
-	enemy->direction = get_direction(); // à écrire
+	enemy->enemy_dir = 0;
 	enemy->frame = 0;
 	enemy->next = NULL;
 	return (enemy);
@@ -29,18 +29,18 @@ t_enemies	*ft_enemy_new(int x, int y)
 
 void	ft_enemy_add_back(t_game *game, t_enemies *new)
 {
-	t_enemies	*last;
+	t_enemies	*tmp;
 
 	if (!game || !new)
 		return ;
-	if (game->enemies == NULL)
+	if (!game->enemies)
 		game->enemies = new;
 	else
 	{
-		last = game->enemies;
-		while (last->next)
-			last = last->next;
-		last->next = new;
+		tmp = game->enemies;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:19:53 by acollon           #+#    #+#             */
-/*   Updated: 2025/06/19 19:04:29 by acollon          ###   ########.fr       */
+/*   Updated: 2025/06/24 16:50:52 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	free_all(t_game *game)
 		return ;
 	if (game->map)
 		free_map(game->map);
+	if (game->enemies)
+		ft_enemy_clear(&(game->enemies));
 	if (game->img_coin)
 		mlx_destroy_image(game->mlx, game->img_coin);
 	if (game->img_exit)

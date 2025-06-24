@@ -6,7 +6,7 @@
 #    By: acollon <acollon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/10 11:07:35 by acollon           #+#    #+#              #
-#    Updated: 2025/06/19 18:41:17 by acollon          ###   ########.fr        #
+#    Updated: 2025/06/24 16:42:58 by acollon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS	= \
 		display/handle_input.c \
 		bonus/display_move.c \
 		animation/animation.c \
-		bonus/enemy.c
+		bonus/enemy.c \
+		bonus/enemy_list.c
 			
 # à compléter au fur et à mesure des tests
 

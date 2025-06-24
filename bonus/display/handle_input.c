@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:58:04 by acollon           #+#    #+#             */
-/*   Updated: 2025/06/19 19:00:08 by acollon          ###   ########.fr       */
+/*   Updated: 2025/06/24 16:22:02 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	handle_key(int keycode, t_game *game)
 		game->anim_state = 3;
 		move_player(game, 1, 0);
 	}
-	// updates_enemies(game); ?
 	return (0);
 }
 
@@ -57,10 +56,10 @@ void	move_player(t_game *game, int x, int y)
 		return ;
 	if (!handle_tile_effect(game, new_x, new_y))
 		return ;
-	// update_enemies(game); ?
 	game->player_x = new_x;
 	game->player_y = new_y;
 	game->move_count++;
+	update_enemies(game);
 	// ft_printf("Move : %d\n", game->move_count);
 	render_map(game);
 }
