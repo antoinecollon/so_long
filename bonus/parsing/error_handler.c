@@ -24,6 +24,8 @@ void	free_all(t_game *game)
 		mlx_destroy_image(game->mlx, game->img_coin);
 	if (game->img_exit)
 		mlx_destroy_image(game->mlx, game->img_exit);
+	if (game->img_exit2)
+		mlx_destroy_image(game->mlx, game->img_exit2);
 	if (game->img_floor)
 		mlx_destroy_image(game->mlx, game->img_floor);
 	if (game->img_wall)
