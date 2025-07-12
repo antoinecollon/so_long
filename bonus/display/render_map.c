@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:30:55 by acollon           #+#    #+#             */
-/*   Updated: 2025/06/24 22:13:41 by acollon          ###   ########.fr       */
+/*   Updated: 2025/06/25 16:50:13 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,44 +39,29 @@
 // 	load_images(g);
 // 	render_map(g);
 // }
-int dummy_loop(void *param)
-{
-	(void)param;
-	return (0);
-}
 
 void	init_game(t_game *g)
 {
 	int		fd;
 	t_flood	flood;
 
-	ft_printf("INIT: open file\n");
 	fd = open(g->filename, O_RDONLY);
 	if (fd < 0)
 		free_and_exit("Failed to open file\n", g);
 	if (count_line(fd, g))
 		free_and_exit("Empty map\n", g);
 	close(fd);
-	ft_printf("INIT: reopen for read_map\n");
 	fd = open(g->filename, O_RDONLY);
 	if (fd < 0)
 		free_and_exit("Failed to reopen file\n", g);
-	ft_printf("INIT: read_map and validate\n");
 	if (read_map(fd, g) || validate_map(g, &flood))
 		return ;
-	ft_printf("INIT: init_enemies\n");
 	init_enemies(g);
-	ft_printf("INIT: init mlx\n");
-	ft_printf("WIDTH = %d, HEIGHT = %d\n", g->map_width, g->map_height);
-		
 	load_images(g);
-	ft_printf("INIT: new window\n");
-	mlx_do_sync(g->mlx);
 	g->window = mlx_new_window(g->mlx, g->map_width * 32,
 			g->map_height * 32, "so_long");
 	if (!g->window)
 		free_and_exit("Failed to create window\n", g);
-	ft_printf("INIT: render map\n");
 	render_map(g);
 	ft_printf("INIT: done!\n");
 }
@@ -85,7 +70,7 @@ void	load_images(t_game *g)
 {
 	int	w;
 	int	h;
-	
+
 	ft_printf("%s\n", "Load : coin");
 	g->img_coin = mlx_xpm_file_to_image(g->mlx, "assets/coin.xpm", &w, &h);
 	ft_printf("%s\n", "Load : exit");
@@ -157,7 +142,6 @@ int	main(int argc, char **argv)
 	game.mlx = mlx_init();
 	if (!game.mlx)
 		free_and_exit("Failed to initiate mlx\n", &game);
-	mlx_loop_hook(game.mlx, dummy_loop, NULL);
 	init_game(&game);
 	mlx_key_hook(game.window, handle_key, &game);
 	mlx_hook(game.window, 17, 0, handle_close, &game);

@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:23:34 by acollon           #+#    #+#             */
-/*   Updated: 2025/06/24 16:48:32 by acollon          ###   ########.fr       */
+/*   Updated: 2025/06/25 17:17:10 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_enemies
 	int					enemy_y;
 	int					enemy_dir;
 	int					frame;
+	int					last_dir;
 	struct s_enemies	*next;
 }	t_enemies;
 
@@ -138,5 +139,12 @@ void		init_enemies(t_game *game);
 t_enemies	*ft_enemy_new(int x, int y);
 void		ft_enemy_add_back(t_game *game, t_enemies *new);
 void		ft_enemy_clear(t_enemies **enemy);
+
+/* enemy_dir.c */
+int		opposite_dir(int dir);
+void	compute_distances(t_game *game, t_enemies *e, int dist[4]);
+int		choose_best_direction(int *dist, int last_dir);
+void	update_enemy_direction(t_game *game, t_enemies *e);
+void	choose_directions(t_game *game);
 
 #endif

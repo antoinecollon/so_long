@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:31:48 by acollon           #+#    #+#             */
-/*   Updated: 2025/06/19 18:35:34 by acollon          ###   ########.fr       */
+/*   Updated: 2025/06/26 12:15:27 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ void	display_move(t_game *game)
 		return ;
 	mlx_string_put(game->mlx, game->window, 10, 10, 0xFFFFFF, "Moves :");
 	mlx_string_put(game->mlx, game->window , 80, 10, 0xFFFFFF, str);
+	free (str);
 }

@@ -6,7 +6,7 @@
 #    By: acollon <acollon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/10 11:07:35 by acollon           #+#    #+#              #
-#    Updated: 2025/06/24 16:42:58 by acollon          ###   ########.fr        #
+#    Updated: 2025/06/25 17:17:29 by acollon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,13 +32,14 @@ SRCS	= \
 		bonus/display_move.c \
 		animation/animation.c \
 		bonus/enemy.c \
-		bonus/enemy_list.c
+		bonus/enemy_list.c \
+		bonus/enemy_dir.c
 			
 # à compléter au fur et à mesure des tests
 
 OBJS	= $(SRCS:.c=.o)
 CC	= cc
-CFLAGS	= -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
+CFLAGS	= -Wall -Wextra -Werror -g -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 LIBFT	= $(LIBFT_DIR)/libft.a
 FT_PRINTF = $(PRINTF_DIR)/ft_printf.a
 

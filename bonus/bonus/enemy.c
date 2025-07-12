@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 18:21:34 by acollon           #+#    #+#             */
-/*   Updated: 2025/06/24 16:48:52 by acollon          ###   ########.fr       */
+/*   Updated: 2025/06/25 17:16:00 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	init_enemies(t_game *game)
 		while (game->map[y][x])
 		{
 			if (game->map[y][x] == 'T')
+			{
 				ft_enemy_add_back(game, ft_enemy_new(x, y));
+				game->map[y][x] = '0';
+			}
 			x++;
 		}
 		y++;
@@ -83,36 +86,13 @@ void	update_enemies(t_game *game)
 void	choose_direction(t_game *game)
 {
 	t_enemies	*e;
-	int			dist[4];
-	int			max;
-	int			dir;
-	int			i;
-	int	total = 0;
-	
-	i = 0;
-	max = 0;
+
 	e = game->enemies;
 	while (e)
 	{
-		dist[0] = get_distance(game, e->enemy_x, e->enemy_y, 0, -1);
-		dist[1] = get_distance(game, e->enemy_x, e->enemy_y, 0, 1);
-		dist[2] = get_distance(game, e->enemy_x, e->enemy_y, -1, 0);
-		dist[3] = get_distance(game, e->enemy_x, e->enemy_y, 1, 0);
-		while (i <= 3)
-		{
-			if (dist[i] > max)
-			{
-				max = dist[i];
-				dir = i;
-			}
-			i++;
-		}
-		e->enemy_dir = dir;
-		total++;
+		update_enemy_direction(game, e);
 		e = e->next;
 	}
-	ft_printf("Choix direction enemy (%d,%d) : %d\n", e->enemy_x, e->enemy_y, dir);
-	ft_printf("Nombre total d'ennemis traités : %d\n", total);
 }
 
 int		get_distance(t_game *game, int x, int y, int dx, int dy)
