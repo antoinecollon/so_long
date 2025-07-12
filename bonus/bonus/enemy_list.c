@@ -56,4 +56,5 @@ void	ft_enemy_clear(t_enemies **enemy)
 		free(*enemy);
 		*enemy = tmp;
 	}
+	*enemy = NULL;
 }
