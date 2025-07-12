@@ -27,7 +27,8 @@ void	init_enemy_texture(t_game *game)
 
 void	init_enemies(t_game *game)
 {
-	int	y, x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (game->map[y])
@@ -53,8 +54,7 @@ void	draw_all_enemies(t_game *game)
 	e = game->enemies;
 	while (e)
 	{
-		mlx_put_image_to_window(game->mlx, game->window, game->img_enemy1,
-			e->enemy_x * 32, e->enemy_y * 32);
+		get_enemy_anim(game, e);
 		e = e->next;
 	}
 }
@@ -67,18 +67,17 @@ void	update_enemies(t_game *game)
 	e = game->enemies;
 	while (e)
 	{
-	//	ft_printf("Avant déplacement : enemy (%d, %d) dir=%d\n", e->enemy_x, e->enemy_y, e->enemy_dir);
+		e->next_x = e->enemy_x;
+		e->next_y = e->enemy_y;
 		if (e->enemy_dir == 0)
-			e->enemy_y--;
+			e->next_y--;
 		if (e->enemy_dir == 1)
-			e->enemy_y++;
+			e->next_y++;
 		if (e->enemy_dir == 2)
-			e->enemy_x--;
+			e->next_x--;
 		if (e->enemy_dir == 3)
-			e->enemy_x++;
-	//	ft_printf("Après déplacement : enemy (%d, %d)\n", e->enemy_x, e->enemy_y);
-		if (e->enemy_x == game->player_x && e->enemy_y == game->player_y)
-			exit_clean("You Lost\n", game);
+			e->next_x++;
+		check_colision(e, game);
 		e = e->next;
 	}
 }
@@ -93,38 +92,4 @@ void	choose_direction(t_game *game)
 		update_enemy_direction(game, e);
 		e = e->next;
 	}
-}
-
-int		get_distance(t_game *game, int x, int y, int dx, int dy)
-{
-	int	dist;
-
-	dist = 0;
-	while (1)
-	{
-		y = y + dy;
-		x = x + dx;
-		if (x < 0 || y < 0 || y > game->map_height || x > game->map_width)
-			break ;
-		if (game->map[y][x] == '1')
-			break ;
-		if (is_enemy(game, x, y))
-			break ;
-		dist++;
-	}
-	return (dist);
-}
-
-int	is_enemy(t_game *game, int x, int y)
-{
-	t_enemies	*tmp;
-
-	tmp = game->enemies;
-	while (tmp)
-	{
-		if (tmp->enemy_x == x && tmp ->enemy_y == y)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
 }

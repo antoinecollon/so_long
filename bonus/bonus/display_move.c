@@ -20,6 +20,6 @@ void	display_move(t_game *game)
 	if (!str)
 		return ;
 	mlx_string_put(game->mlx, game->window, 10, 10, 0xFFFFFF, "Moves :");
-	mlx_string_put(game->mlx, game->window , 80, 10, 0xFFFFFF, str);
+	mlx_string_put(game->mlx, game->window, 80, 10, 0xFFFFFF, str);
 	free (str);
 }

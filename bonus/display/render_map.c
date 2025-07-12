@@ -75,6 +75,7 @@ void	load_images(t_game *g)
 	g->img_coin = mlx_xpm_file_to_image(g->mlx, "assets/coin.xpm", &w, &h);
 	ft_printf("%s\n", "Load : exit");
 	g->img_exit = mlx_xpm_file_to_image(g->mlx, "assets/exit.xpm", &w, &h);
+	g->img_exit2 = mlx_xpm_file_to_image(g->mlx, "assets/exit2.xpm", &w, &h);
 	ft_printf("%s\n", "Load : floor");
 	g->img_floor = mlx_xpm_file_to_image(g->mlx, "assets/floor.xpm", &w, &h);
 	ft_printf("%s\n", "Load : wall");
@@ -123,8 +124,10 @@ void	put_tile(t_game *g, char tile, int x, int y)
 		mlx_put_image_to_window(g->mlx, g->window, g->img_floor, x, y);
 	if (tile == 'C')
 		mlx_put_image_to_window(g->mlx, g->window, g->img_coin, x, y);
-	if (tile == 'E')
+	if (tile == 'E' && g->total_collectible != 0)
 		mlx_put_image_to_window(g->mlx, g->window, g->img_exit, x, y);
+	if (tile == 'E' && g->total_collectible == 0)
+		mlx_put_image_to_window(g->mlx, g->window, g->img_exit2, x, y);
 }
 
 int	main(int argc, char **argv)

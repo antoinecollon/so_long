@@ -29,6 +29,8 @@ typedef struct s_enemies
 {
 	int					enemy_x;
 	int					enemy_y;
+	int					next_x;
+	int					next_y;
 	int					enemy_dir;
 	int					frame;
 	int					last_dir;
@@ -53,11 +55,14 @@ typedef struct s_game
 	void		*img_enemy2;
 	int			anim_state;
 	void		*img_exit;
+	void		*img_exit2;
 	void		*img_coin;
 	int			img_width;
 	int			img_height;
 	int			player_x;
 	int			player_y;
+	int			prev_x;
+	int			prev_y;
 	int			move_count;
 	int			total_collectible;
 	int			nb_player;
@@ -125,26 +130,25 @@ void		display_move(t_game *game);
 
 /* animation.c*/
 void		get_anim(t_game *game);
+void		get_enemy_anim(t_game *g, t_enemies *e);
 
 /* enemy.c */
 void		init_enemy_texture(t_game *game);
-void		display_enemy(t_game *game, int x, int y);
 void		draw_all_enemies(t_game *game);
 void		update_enemies(t_game *game);
 void		choose_direction(t_game *game);
-int			get_distance(t_game *game, int x, int y, int dx, int dy);
-int			is_enemy(t_game *game, int x, int y);
 void		init_enemies(t_game *game);
+
 /* enemy_list.c */
 t_enemies	*ft_enemy_new(int x, int y);
 void		ft_enemy_add_back(t_game *game, t_enemies *new);
 void		ft_enemy_clear(t_enemies **enemy);
-
+int			is_enemy(t_game *game, int x, int y);
+void		check_colision(t_enemies *e, t_game *game);
 /* enemy_dir.c */
-int		opposite_dir(int dir);
-void	compute_distances(t_game *game, t_enemies *e, int dist[4]);
-int		choose_best_direction(int *dist, int last_dir);
-void	update_enemy_direction(t_game *game, t_enemies *e);
-void	choose_directions(t_game *game);
-
+int			opposite_dir(int dir);
+void		compute_distances(t_game *game, t_enemies *e, int dist[4]);
+int			choose_best_direction(int *dist, int last_dir);
+void		update_enemy_direction(t_game *game, t_enemies *e);
+int			get_distance(t_game *game, t_enemies *e, int dx, int dy);
 #endif

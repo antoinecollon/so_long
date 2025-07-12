@@ -27,10 +27,10 @@ int	opposite_dir(int dir)
 
 void	compute_distances(t_game *game, t_enemies *e, int dist[4])
 {
-	dist[0] = get_distance(game, e->enemy_x, e->enemy_y, 0, -1);
-	dist[1] = get_distance(game, e->enemy_x, e->enemy_y, 0, 1);
-	dist[2] = get_distance(game, e->enemy_x, e->enemy_y, -1, 0);
-	dist[3] = get_distance(game, e->enemy_x, e->enemy_y, 1, 0);
+	dist[0] = get_distance(game, e, 0, -1);
+	dist[1] = get_distance(game, e, 0, 1);
+	dist[2] = get_distance(game, e, -1, 0);
+	dist[3] = get_distance(game, e, 1, 0);
 }
 
 int	choose_best_direction(int *dist, int last_dir)
@@ -65,4 +65,28 @@ void	update_enemy_direction(t_game *game, t_enemies *e)
 	new_dir = choose_best_direction(dist, e->enemy_dir);
 	e->last_dir = e->enemy_dir;
 	e->enemy_dir = new_dir;
+}
+
+int	get_distance(t_game *game, t_enemies *e, int dx, int dy)
+{
+	int	dist;
+	int	x;
+	int	y;
+
+	x = e->enemy_x;
+	y = e->enemy_y;
+	dist = 0;
+	while (1)
+	{
+		y += dy;
+		x += dx;
+		if (x < 0 || y < 0 || y >= game->map_height || x >= game->map_width)
+			break ;
+		if (game->map[y][x] == '1')
+			break ;
+		if (is_enemy(game, x, y))
+			break ;
+		dist++;
+	}
+	return (dist);
 }

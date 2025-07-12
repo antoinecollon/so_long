@@ -56,11 +56,12 @@ void	move_player(t_game *game, int x, int y)
 		return ;
 	if (!handle_tile_effect(game, new_x, new_y))
 		return ;
+	game->prev_x = game->player_x;
+	game->prev_y = game->player_y;
 	game->player_x = new_x;
 	game->player_y = new_y;
 	game->move_count++;
 	update_enemies(game);
-	// ft_printf("Move : %d\n", game->move_count);
 	render_map(game);
 }
 

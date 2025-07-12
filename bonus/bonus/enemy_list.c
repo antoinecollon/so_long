@@ -58,3 +58,28 @@ void	ft_enemy_clear(t_enemies **enemy)
 	}
 	*enemy = NULL;
 }
+
+int	is_enemy(t_game *game, int x, int y)
+{
+	t_enemies	*tmp;
+
+	tmp = game->enemies;
+	while (tmp)
+	{
+		if (tmp->enemy_x == x && tmp ->enemy_y == y)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+void	check_colision(t_enemies *e, t_game *game)
+{
+	if (game->prev_x == e->next_x && game->prev_y == e->next_y
+		&& game->player_x == e->enemy_x && game->player_y == e->enemy_y)
+		exit_clean("You Lost\n", game);
+	e->enemy_x = e->next_x;
+	e->enemy_y = e->next_y;
+	if (e->enemy_x == game->player_x && e->enemy_y == game->player_y)
+		exit_clean("You Lost\n", game);
+}
