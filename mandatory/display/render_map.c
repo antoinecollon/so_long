@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:30:55 by acollon           #+#    #+#             */
-/*   Updated: 2025/05/24 15:30:15 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/17 15:18:04 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void	load_images(t_game *g)
 	int	w;
 	int	h;
 
-	g->img_coin = mlx_xpm_file_to_image(g->mlx, "assets/coin.xpm", &w, &h);
-	g->img_exit = mlx_xpm_file_to_image(g->mlx, "assets/exit.xpm", &w, &h);
-	g->img_floor = mlx_xpm_file_to_image(g->mlx, "assets/floor.xpm", &w, &h);
-	g->img_wall = mlx_xpm_file_to_image(g->mlx, "assets/wall.xpm", &w, &h);
-	g->img_player = mlx_xpm_file_to_image(g->mlx, "assets/knight.xpm", &w, &h);
+	g->img_coin = mlx_xpm_file_to_image(g->mlx, "../assets/coin.xpm", &w, &h);
+	g->img_exit = mlx_xpm_file_to_image(g->mlx, "../assets/exit.xpm", &w, &h);
+	g->img_floor = mlx_xpm_file_to_image(g->mlx, "../assets/floor.xpm", &w, &h);
+	g->img_wall = mlx_xpm_file_to_image(g->mlx, "../assets/wall.xpm", &w, &h);
+	g->img_player = mlx_xpm_file_to_image(g->mlx, "../assets/knight.xpm", &w, &h);
 	if (!g->img_coin || !g->img_exit || !g->img_player
 		|| !g->img_wall || !g->img_floor)
 		free_and_exit("Error charging sprites\n", g);

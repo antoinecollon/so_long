@@ -6,13 +6,14 @@
 #    By: acollon <acollon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/10 11:07:35 by acollon           #+#    #+#              #
-#    Updated: 2025/06/25 17:17:29 by acollon          ###   ########.fr        #
+#    Updated: 2025/07/17 15:24:34 by acollon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= so_long
 
-SRC_DIR	= src
+SRC_DIR	= mandatory
+SRC_DIR_BONUS = bonus
 OBJ_DIR	= obj
 INC_DIR	= includes
 LIBFT_DIR = libft
@@ -23,17 +24,19 @@ MLX_FLAGS = -lXext -lX11 -lm
 SRCS	= \
 		gnl/get_next_line.c \
 		gnl/get_next_line_utils.c \
-		parsing/read_map.c \
-		parsing/error_handler.c \
-		parsing/parse_map.c \
-		parsing/validate_path.c \
-		display/render_map.c \
-		display/handle_input.c \
-		bonus/display_move.c \
-		animation/animation.c \
-		bonus/enemy.c \
-		bonus/enemy_list.c \
-		bonus/enemy_dir.c
+		$(SRC_DIR)parsing/read_map.c \
+		$(SRC_DIR)parsing/error_handler.c \
+		$(SRC_DIR)parsing/parse_map.c \
+		$(SRC_DIR)parsing/validate_path.c \
+		$(SRC_DIR)display/render_map.c \
+		$(SRC_DIR)display/handle_input.c \
+
+SRCS_BONUS	= \		
+		$(SRC_DIR_BONUS)bonus/display_move.c \
+		$(SRC_DIR_BONUS)animation/animation.c \
+		$(SRC_DIR_BONUS)bonus/enemy.c \
+		$(SRC_DIR_BONUS)bonus/enemy_list.c \
+		$(SRC_DIR_BONUS)bonus/enemy_dir.c
 			
 # à compléter au fur et à mesure des tests
 

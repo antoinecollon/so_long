@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:30:55 by acollon           #+#    #+#             */
-/*   Updated: 2025/06/25 16:50:13 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/17 15:19:00 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,15 @@ void	load_images(t_game *g)
 	int	w;
 	int	h;
 
-	ft_printf("%s\n", "Load : coin");
-	g->img_coin = mlx_xpm_file_to_image(g->mlx, "assets/coin.xpm", &w, &h);
-	ft_printf("%s\n", "Load : exit");
-	g->img_exit = mlx_xpm_file_to_image(g->mlx, "assets/exit.xpm", &w, &h);
-	g->img_exit2 = mlx_xpm_file_to_image(g->mlx, "assets/exit2.xpm", &w, &h);
-	ft_printf("%s\n", "Load : floor");
-	g->img_floor = mlx_xpm_file_to_image(g->mlx, "assets/floor.xpm", &w, &h);
-	ft_printf("%s\n", "Load : wall");
-	g->img_wall = mlx_xpm_file_to_image(g->mlx, "assets/wall.xpm", &w, &h);
-	ft_printf("%s\n", "Load : player1");
-	g->img_play1 = mlx_xpm_file_to_image(g->mlx, "assets/knight1.xpm", &w, &h);
-	ft_printf("%s\n", "Load : player2");
-	g->img_play2 = mlx_xpm_file_to_image(g->mlx, "assets/knight2.xpm", &w, &h);
-	ft_printf("%s\n", "Load : player3");
-	g->img_play3 = mlx_xpm_file_to_image(g->mlx, "assets/knight3.xpm", &w, &h);
-	ft_printf("%s\n", "Load : player4");
-	g->img_play4 = mlx_xpm_file_to_image(g->mlx, "assets/knight4.xpm", &w, &h);
+	g->img_coin = mlx_xpm_file_to_image(g->mlx, "../assets/coin.xpm", &w, &h);
+	g->img_exit = mlx_xpm_file_to_image(g->mlx, "../assets/exit.xpm", &w, &h);
+	g->img_exit2 = mlx_xpm_file_to_image(g->mlx, "../assets/exit2.xpm", &w, &h);
+	g->img_floor = mlx_xpm_file_to_image(g->mlx, "../assets/floor.xpm", &w, &h);
+	g->img_wall = mlx_xpm_file_to_image(g->mlx, "../assets/wall.xpm", &w, &h);
+	g->img_play1 = mlx_xpm_file_to_image(g->mlx, "../assets/knight1.xpm", &w, &h);
+	g->img_play2 = mlx_xpm_file_to_image(g->mlx, "../assets/knight2.xpm", &w, &h);
+	g->img_play3 = mlx_xpm_file_to_image(g->mlx, "../assets/knight3.xpm", &w, &h);
+	g->img_play4 = mlx_xpm_file_to_image(g->mlx, "../assets/knight4.xpm", &w, &h);
 	init_enemy_texture(g);
 	g->anim_state = 0;
 	if (!g->img_coin || !g->img_exit || !g->img_play1

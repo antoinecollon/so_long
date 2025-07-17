@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 18:21:34 by acollon           #+#    #+#             */
-/*   Updated: 2025/06/25 17:16:00 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/17 15:20:32 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	init_enemy_texture(t_game *game)
 	int		h;
 
 	game->img_enemy1 = mlx_xpm_file_to_image(game->mlx,
-			"assets/enemy1.xpm", &w, &h);
+			"../assets/enemy1.xpm", &w, &h);
 	game->img_enemy2 = mlx_xpm_file_to_image(game->mlx,
-			"assets/enemy2.xpm", &w, &h);
+			"../assets/enemy2.xpm", &w, &h);
 	if (!game->img_enemy1 || !game->img_enemy2)
 		free_and_exit("Error charging sprites\n", game);
 }
