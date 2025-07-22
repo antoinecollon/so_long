@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:19:53 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/18 12:59:43 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/22 19:31:09 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_all(t_game *g)
 	if (!g)
 		return ;
 	if (!g->map || !g->img_coin || !g->img_exit || !g->img_player
-		|| g->img_floor || g->img_wall || !g->window)
+		|| !g->img_floor || !g->img_wall || !g->window)
 		return ;
 	if (g->map)
 		free_map(g->map);

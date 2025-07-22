@@ -6,7 +6,7 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 15:30:55 by acollon           #+#    #+#             */
-/*   Updated: 2025/07/17 15:18:04 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/22 19:25:20 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,47 @@ void	init_game(t_game *g)
 		free_and_exit("Failed to iniate mlx\n", g);
 	g->window = mlx_new_window(g->mlx, g->map_width * 32,
 			g->map_height * 32, "so_long");
+	load_images(g);
 	if (!g->window)
 		free_and_exit("Failed to create window\n", g);
-	load_images(g);
 	render_map(g);
 }
+
+// void	init_game(t_game *g)
+// {
+// 	int		fd;
+// 	t_flood	flood;
+
+// 	fd = open(g->filename, O_RDONLY);
+// 	if (fd < 0)
+// 		free_and_exit("Failed to open file\n", g);
+// 	if (count_line(fd, g))
+// 		free_and_exit("Empty map\n", g);
+// 	close(fd);
+// 	fd = open(g->filename, O_RDONLY);
+// 	if (fd < 0)
+// 		free_and_exit("Failed to reopen file\n", g);
+// 	if (read_map(fd, g) || validate_map(g, &flood))
+// 		return ;
+// 	load_images(g);
+// 	g->window = mlx_new_window(g->mlx, g->map_width * 32,
+// 			g->map_height * 32, "so_long");
+// 	if (!g->window)
+// 		free_and_exit("Failed to create window\n", g);
+// 	render_map(g);
+// 	ft_printf("INIT: done!\n");
+// }
 
 void	load_images(t_game *g)
 {
 	int	w;
 	int	h;
 
-	g->img_coin = mlx_xpm_file_to_image(g->mlx, "../assets/coin.xpm", &w, &h);
-	g->img_exit = mlx_xpm_file_to_image(g->mlx, "../assets/exit.xpm", &w, &h);
-	g->img_floor = mlx_xpm_file_to_image(g->mlx, "../assets/floor.xpm", &w, &h);
-	g->img_wall = mlx_xpm_file_to_image(g->mlx, "../assets/wall.xpm", &w, &h);
-	g->img_player = mlx_xpm_file_to_image(g->mlx, "../assets/knight.xpm", &w, &h);
+	g->img_coin = mlx_xpm_file_to_image(g->mlx, "assets/coin.xpm", &w, &h);
+	g->img_exit = mlx_xpm_file_to_image(g->mlx, "assets/exit1.xpm", &w, &h);
+	g->img_floor = mlx_xpm_file_to_image(g->mlx, "assets/floor.xpm", &w, &h);
+	g->img_wall = mlx_xpm_file_to_image(g->mlx, "assets/wall.xpm", &w, &h);
+	g->img_player = mlx_xpm_file_to_image(g->mlx, "assets/knight1.xpm", &w, &h);
 	if (!g->img_coin || !g->img_exit || !g->img_player
 		|| !g->img_wall || !g->img_floor)
 		free_and_exit("Error charging sprites\n", g);
@@ -90,13 +115,17 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	ft_bzero(&game, sizeof(t_game));
 	if (argc != 2)
 	{
-		ft_putstr_fd("Usage: ./so_long map.ber\n", 2);
+		ft_putstr_fd("File .ber needed\n", 2);
 		return (1);
 	}
 	game.filename = argv[1];
 	game.move_count = 0;
+	// game.mlx = mlx_init();
+	// if (!game.mlx)
+	// 	free_and_exit("Failed to initiate mlx\n", &game);
 	init_game(&game);
 	mlx_key_hook(game.window, handle_key, &game);
 	mlx_hook(game.window, 17, 0, handle_close, &game);

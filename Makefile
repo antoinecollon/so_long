@@ -6,7 +6,7 @@
 #    By: acollon <acollon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/10 11:07:35 by acollon           #+#    #+#              #
-#    Updated: 2025/07/18 12:49:38 by acollon          ###   ########.fr        #
+#    Updated: 2025/07/22 17:47:14 by acollon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ SRCS	= \
 		$(SRC_DIR)/display/handle_input.c \
 
 SRCS_BONUS	= \
+		gnl/get_next_line.c \
+		gnl/get_next_line_utils.c \
 		$(SRC_DIR_BONUS)/bonus/display_move.c \
 		$(SRC_DIR_BONUS)/bonus/animation.c \
 		$(SRC_DIR_BONUS)/bonus/enemy.c \
@@ -80,11 +82,13 @@ clean:
 	$(MAKE) -C $(MLX_DIR) clean
 	$(MAKE) -C $(PRINTF_DIR) clean
 	rm -f $(OBJS)
+	rm -f $(OBJS_BONUS)
 
 fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(PRINTF_DIR) fclean
 	rm -f $(NAME)
+	rm -f $(NAME_BONUS)
 
 re: fclean all
 
