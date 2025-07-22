@@ -6,34 +6,37 @@
 /*   By: acollon <acollon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 13:19:53 by acollon           #+#    #+#             */
-/*   Updated: 2025/05/23 17:43:38 by acollon          ###   ########.fr       */
+/*   Updated: 2025/07/18 12:59:43 by acollon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	free_all(t_game *game)
+void	free_all(t_game *g)
 {
-	if (!game)
+	if (!g)
 		return ;
-	if (game->map)
-		free_map(game->map);
-	if (game->img_coin)
-		mlx_destroy_image(game->mlx, game->img_coin);
-	if (game->img_exit)
-		mlx_destroy_image(game->mlx, game->img_exit);
-	if (game->img_player)
-		mlx_destroy_image(game->mlx, game->img_player);
-	if (game->img_floor)
-		mlx_destroy_image(game->mlx, game->img_floor);
-	if (game->img_wall)
-		mlx_destroy_image(game->mlx, game->img_wall);
-	if (game->window)
-		mlx_destroy_window(game->mlx, game->window);
-	if (game->mlx)
+	if (!g->map || !g->img_coin || !g->img_exit || !g->img_player
+		|| g->img_floor || g->img_wall || !g->window)
+		return ;
+	if (g->map)
+		free_map(g->map);
+	if (g->img_coin)
+		mlx_destroy_image(g->mlx, g->img_coin);
+	if (g->img_exit)
+		mlx_destroy_image(g->mlx, g->img_exit);
+	if (g->img_player)
+		mlx_destroy_image(g->mlx, g->img_player);
+	if (g->img_floor)
+		mlx_destroy_image(g->mlx, g->img_floor);
+	if (g->img_wall)
+		mlx_destroy_image(g->mlx, g->img_wall);
+	if (g->window)
+		mlx_destroy_window(g->mlx, g->window);
+	if (g->mlx)
 	{
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
+		mlx_destroy_display(g->mlx);
+		free(g->mlx);
 	}
 }
 
